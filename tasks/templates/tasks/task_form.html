@@ -1,0 +1,18 @@
+{% extends "tasks/base.html" %}
+{% load bootstrap4 %}
+
+{% block title %}{% if task %}Редактирование задачи{% else %}Новая задача{% endif %}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2 class="mb-3">{% if task %}Редактирование задачи{% else %}Создание новой задачи{% endif %}</h2>
+        <form method="post">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+            <a href="{% url 'tasks:task_list' %}" class="btn btn-outline-secondary ml-2">Отмена</a>
+        </form>
+    </div>
+</div>
+{% endblock content %}
